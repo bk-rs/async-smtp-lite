@@ -1,0 +1,18 @@
+[package]
+name = "async-smtp-lite-demo-smol"
+version = "0.1.0"
+authors = ["vkill <vkill.net@gmail.com>"]
+edition = "2018"
+
+[[bin]]
+name = "aws_workmail"
+path = "src/aws_workmail.rs"
+
+[[bin]]
+name = "gmail"
+path = "src/gmail.rs"
+
+[dependencies]
+async-smtp-lite = { path = "../..", version = "0.1", features = ["async_tls"] }
+async-io = "0.1.2"
+blocking = "0.4.6"

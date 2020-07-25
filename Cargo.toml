@@ -1,0 +1,30 @@
+[package]
+name = "async-smtp-lite"
+version = "0.1.0"
+authors = ["vkill <vkill.net@gmail.com>"]
+edition = "2018"
+description = "Asynchronous smtp."
+license = "Apache-2.0 OR MIT"
+repository = "https://github.com/bk-rs/async-smtp-lite"
+homepage = "https://github.com/bk-rs/async-smtp-lite"
+documentation = "https://docs.rs/async-smtp-lite"
+keywords = []
+categories = ["asynchronous"]
+readme = "README.md"
+
+[features]
+async_tls = ["async-stream-tls-upgrader/async_tls_client"]
+async_native_tls = ["async-stream-tls-upgrader/async_native_tls_client"]
+
+[dependencies]
+lettre = {version = "0.10.0-alpha", default-features = false, features = ["builder", "smtp-transport"] }
+nom = { version = "5", default-features = false, features = [] }
+
+async-stream-packed = { version = "0.1", features = ["upgradable", "tls"] }
+async-stream-tls-upgrader = { version = "0.1.2", features = [], optional = true }
+futures-util = { version = "0.3", default-features = false, features = ["io"] }
+
+[workspace]
+members = [
+    "demos/smol",
+]
