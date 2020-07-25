@@ -21,7 +21,7 @@ lettre = {version = "0.10.0-alpha", default-features = false, features = ["build
 nom = { version = "5", default-features = false, features = [] }
 
 async-stream-packed = { version = "0.1", features = ["upgradable", "tls"] }
-async-stream-tls-upgrader = { version = "0.1.2", features = [], optional = true }
+async-stream-tls-upgrader = { version = "0.1.2", features = [] }
 futures-util = { version = "0.3", default-features = false, features = ["io"] }
 
 [workspace]
