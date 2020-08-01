@@ -1,6 +1,6 @@
 use std::result;
 
-use async_stream_packed::tls::TlsClientUpgrader;
+use async_stream_packed::TlsClientUpgrader;
 use futures_util::io::{AsyncRead, AsyncWrite};
 use lettre::transport::smtp::{
     authentication::{Credentials, Mechanism},

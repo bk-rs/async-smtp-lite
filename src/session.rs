@@ -1,6 +1,6 @@
 use std::result;
 
-use async_stream_packed::tls::TlsClientUpgrader;
+use async_stream_packed::TlsClientUpgrader;
 use futures_util::io::{AsyncRead, AsyncWrite};
 use lettre::message::Message;
 use lettre::transport::smtp::error::Error;

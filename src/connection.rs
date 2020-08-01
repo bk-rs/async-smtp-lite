@@ -3,7 +3,7 @@ use std::io;
 use std::result;
 use std::str::FromStr;
 
-use async_stream_packed::{tls::TlsClientUpgrader, UpgradableAsyncStream};
+use async_stream_packed::{TlsClientUpgrader, UpgradableAsyncStream};
 use futures_util::io::{AsyncBufReadExt, AsyncRead, AsyncWrite, AsyncWriteExt, BufReader};
 use lettre::transport::smtp::{
     authentication::{Credentials, Mechanism},
@@ -53,8 +53,13 @@ where
     pub fn new(stream: S, upgrader: STU) -> Self {
         Self::from_parts(AsyncStream::new(stream, upgrader))
     }
+}
 
-    pub fn with_tls_stream(stream: STU::Output) -> Self {
+impl<S> AsyncConnection<S, ()>
+where
+    S: Send + 'static,
+{
+    pub fn with_tls_stream(stream: S) -> Self {
         Self::from_parts(AsyncStream::with_upgraded_stream(stream))
     }
 }
