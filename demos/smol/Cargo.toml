@@ -14,5 +14,5 @@ path = "src/gmail.rs"
 
 [dependencies]
 async-smtp-lite = { path = "../..", version = "0.1", features = ["async_tls"] }
-async-io = "0.1.2"
-blocking = "0.4.6"
+async-net = "0.1.2"
+futures-lite = "0.1.10"

@@ -16,10 +16,9 @@ cargo run -p async-smtp-lite-demo-smol --bin gmail xxx@gmail.com '123456'
 
 use std::env;
 use std::io;
-use std::net::{TcpStream, ToSocketAddrs};
 
-use async_io::Async;
-use blocking::block_on;
+use async_net::TcpStream;
+use futures_lite::future::block_on;
 
 use async_smtp_lite::lettre::{ClientId, Credentials, Message, DEFAULT_MECHANISMS};
 use async_smtp_lite::{AsyncClient, AsyncConnection, AsyncTlsClientTlsUpgrader};
@@ -44,14 +43,10 @@ async fn run() -> io::Result<()> {
         let mechanisms = DEFAULT_MECHANISMS;
 
         let endpoint = "smtp.gmail.com".to_owned();
-        let addr = format!("{}:{}", endpoint.clone(), port)
-            .to_socket_addrs()
-            .unwrap()
-            .next()
-            .unwrap();
-
+        let addr = format!("{}:{}", endpoint.clone(), port);
         println!("addr: {}", addr);
-        let stream = Async::<TcpStream>::connect(addr).await?;
+
+        let stream = TcpStream::connect(addr).await?;
 
         let connection = AsyncConnection::with_async_tls_upgrader(
             stream,
